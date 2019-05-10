@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: springcloud-zuul-gateway
+# 端口号
+server:
+  port: 60000
+zuul:
+  routes:
+    # 用户服务
+    api-system-service: /system/**
+    # 统一认证服务中心
+    springcloud-auth-server: /auth/**
+  sensitive-headers:
+
+# 安全相关配置
+security:
+  oauth2:
+    client:
+      access-token-uri: https://github.com/login/oauth/access_token
+      user-authorization-uri: https://github.com/login/oauth/authorize
+      client-id: e2ade932be4b5ea3e2c7
+      client-secret: f8e30d44aa5dd440831ab88a72f0af04f5367a20
+    resource:
+      userInfoUri: https://api.github.com/user
+      preferTokenInfo: false
+
+# Eureka 相关配置
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:50000/eureka/
+  instance:
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+    instance-id: ${spring.application.name}:${server.port}

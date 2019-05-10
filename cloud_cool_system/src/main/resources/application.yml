@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: api-system-service
+# 服务端口号
+server:
+  port: 9090
+
+# Eureka 相关配置
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:50000/eureka/
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+# 安全相关配置
+#security:
+#  oauth2:
+#    resource:
+#      jwt:
+#        key-value: "111"
+#      #user-info-uri:
+#      #prefer-token-info: false
+#      id: api
+#      service-id: api-user-service
